@@ -11,9 +11,10 @@ interface PricingCardProps {
   gradient: string;
   popular?: boolean;
   delay?: number;
+  onSelect?: () => void;
 }
 
-export function PricingCard({ title, price, description, features, gradient, popular, delay = 0 }: PricingCardProps) {
+export function PricingCard({ title, price, description, features, gradient, popular, delay = 0, onSelect }: PricingCardProps) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -49,7 +50,10 @@ export function PricingCard({ title, price, description, features, gradient, pop
           ))}
         </div>
         
-        <Button className={cn("w-full font-bold", popular ? "bg-orange-500 hover:bg-orange-600" : "bg-zinc-700 hover:bg-zinc-600")}>
+        <Button 
+          onClick={onSelect}
+          className={cn("w-full font-bold", popular ? "bg-orange-500 hover:bg-orange-600" : "bg-zinc-700 hover:bg-zinc-600")}
+        >
           Choose Plan
         </Button>
       </div>

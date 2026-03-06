@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { Hero } from '@/components/Hero';
 import { PricingCard } from '@/components/PricingCard';
 import { AddOnCard } from '@/components/AddOns';
 import { Footer } from '@/components/Footer';
 import { GeminiChat } from '@/components/GeminiChat';
 import { Portfolio } from '@/components/Portfolio';
+import { BookingModal } from '@/components/BookingModal';
 import { PRICING_PACKAGES, ADD_ONS } from '@/lib/utils';
 
 export default function App() {
+  const [selectedPackage, setSelectedPackage] = useState<{ title: string; price: string } | null>(null);
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans selection:bg-orange-500/30">
       <Hero />
@@ -30,13 +34,14 @@ export default function App() {
                 key={index}
                 {...pkg}
                 delay={index * 0.1}
+                onSelect={() => setSelectedPackage({ title: pkg.title, price: pkg.price })}
               />
             ))}
           </div>
         </section>
 
         {/* Add-ons Section */}
-        <section id="addons" className="max-w-4xl mx-auto space-y-8">
+        <section id="addons" className="max-w-4xl mx-auto space-y-8 px-4">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-2">Add-On Services</h3>
             <p className="text-zinc-400">Customize your package with these extras</p>
@@ -56,6 +61,12 @@ export default function App() {
 
       <Footer />
       <GeminiChat />
+      
+      <BookingModal 
+        isOpen={!!selectedPackage} 
+        onClose={() => setSelectedPackage(null)} 
+        selectedPackage={selectedPackage} 
+      />
     </div>
   );
 }

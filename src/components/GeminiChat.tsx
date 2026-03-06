@@ -109,6 +109,7 @@ export function GeminiChat() {
     <>
       {/* Floating Button */}
       <motion.button
+        id="gemini-chat-trigger"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}

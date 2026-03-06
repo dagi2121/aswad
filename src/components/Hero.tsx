@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Palette, Sparkles } from 'lucide-react';
+import { Palette, Sparkles, MessageCircle } from 'lucide-react';
 
 export function Hero() {
   return (
@@ -31,12 +31,38 @@ export function Hero() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-8 py-3 rounded-full bg-orange-500 text-white font-bold hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20">
+            <button 
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 rounded-full bg-orange-500 text-white font-bold hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20"
+            >
               View Packages
             </button>
-            <button className="px-8 py-3 rounded-full bg-zinc-800 text-white font-bold hover:bg-zinc-700 transition-colors border border-zinc-700">
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 rounded-full bg-zinc-800 text-white font-bold hover:bg-zinc-700 transition-colors border border-zinc-700"
+            >
               Contact Us
             </button>
+          </div>
+
+          <div className="mt-8">
+            <button 
+              onClick={() => {
+                const element = document.getElementById('gemini-chat-trigger');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                  element.click();
+                }
+              }}
+              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 text-white font-bold text-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full transition-transform duration-700 ease-in-out -skew-x-12 -translate-x-full" />
+              <MessageCircle className="w-6 h-6 animate-bounce" />
+              <span>Get a Free Consultation</span>
+            </button>
+            <p className="text-zinc-500 text-sm mt-3">
+              Talk to our AI assistant instantly
+            </p>
           </div>
         </motion.div>
       </div>

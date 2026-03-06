@@ -1,0 +1,5 @@
+{
+  "name": "Aswad Creatives",
+  "description": "Professional graphics design and branding portfolio website with AI-powered consultation.",
+  "requestFramePermissions": ["microphone", "geolocation"]
+}
